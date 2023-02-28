@@ -9,6 +9,12 @@ class Evento(models.Model):
     data_criacao = models.DateTimeField(auto_now=True)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    class Meta:
+        db_table = 'evento'
+    
     # Formata nome para aparecer com o titulo quando for chamado
     def __str__(self) -> str:
         return self.titulo
+    
+    def get_data_evento(self):
+        return self.data_evento.strftime('%d/%m/%Y %H:%M')
